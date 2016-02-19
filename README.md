@@ -11,7 +11,7 @@
 <a href="https://travis-ci.org/uraimo/HD44780CharacterLCD.swift"><img src="https://travis-ci.org/uraimo/HD44780CharacterLCD.swift.svg" alt="Travis CI"></a>
 </p>
  
-![LCD with Swift](https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/lcd.jpg)
+![LCD with Swift](https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/imgs/lcd.jpg)
 
 
 #Summary
