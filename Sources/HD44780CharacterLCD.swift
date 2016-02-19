@@ -7,7 +7,7 @@
  
 
 /// Class that represents the display being configured
-public class PCD8544{
+public class HD44780LCD{
     var rs,e,d7,d6,d5,d4:GPIO
     let width,height:Int
 
@@ -30,6 +30,18 @@ public class PCD8544{
         self.d4.direction = .OUT
 
     }
+
+    /**
+     Moves the cursor and sets a character
+     The only difference between the hd44780 charset and the standard
+     ASCII is that the backslash is replaced by the yen symbol.
+
+     If usCharSet is false, the alternative japanese charset with 
+     katakana symbols will be used instead of the usual ASCII one.
+    */    
+    public func printString(x:Int, y:Int, what:String, usCharSet:bool){
+
+    } 
 
 
 }

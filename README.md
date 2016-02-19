@@ -1,5 +1,7 @@
 #HD44780CharacterLCD.swift
 
+**IT DOES NOT WORK YET, COME BACK IN A FEW DAYS**
+
 *A Swift library for 16x2(aka 1602A) or 20x4(aka 2004A) Character LCDs with an Hitachi HD44780 controller or one of its clones(KS0066, SPLC780D, ST7066U, NT8331D, etc...).*
 
 <p>
@@ -51,4 +53,13 @@ As everything interacting with GPIOs via sysfs, if you are not already root, you
 ## Examples
 
 Examples are available in the *Examples* directory.
+
+
+## TODO
+
+A few missing features (that you could help implement if interested):
+
+- [ ] User defined characters not supported (see [here](http://www.quinapalus.com/hd44780udg.html))
+- [ ] This library only write to the display, reading is not supported
+- [ ] RGB backlit LCD variant not supported (can be easily implemented with 3 gpios)
 
