@@ -2,7 +2,7 @@
 
 **IT DOES NOT WORK YET, COME BACK IN A FEW DAYS**
 
-*A Swift library for 16x2(aka 1602A) or 20x4(aka 2004A) Character LCDs with an Hitachi HD44780 controller or one of its clones(KS0066, SPLC780D, ST7066U, NT8331D, etc...).*
+*A Swift library for 16x2(aka 1602A), 20x4(aka 2004A) or bigger Character LCDs with an Hitachi HD44780 controller or one of its clones(KS0066, SPLC780D, ST7066U, NT8331D, etc...).*
 
 <p>
 <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux-only" />
@@ -16,7 +16,7 @@
 
 #Summary
 
-A Swift library for 16x2(aka 1602A) or 20x4(aka 2004A) Character LCDs with an Hitachi HD44780 controller or one of its clones(KS0066, SPLC780D, ST7066U, NT8331D, etc... 99% of the controllers on the market).
+A Swift library for 16x2(aka 1602A), 20x4(aka 2004A) or bigger Character LCDs with an Hitachi HD44780 controller or one of its clones(KS0066, SPLC780D, ST7066U, NT8331D, etc... 99% of the controllers on the market).
 
 This library will not work with LCDs connected with an additional I2C/SPI driver board (boards with just 5 pins instead of 16 or so). 
 
