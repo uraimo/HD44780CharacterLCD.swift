@@ -11,7 +11,7 @@
  Keep in mind a few things about this implementation:
 
  * This library use the 4-bits mode of the controller
- * The r/w line is connected to GND, so only writes are possible
+ * The r/w line should be connected to GND, so only writes are possible
 
 */
 public class HD44780LCD{
@@ -38,6 +38,7 @@ public class HD44780LCD{
         initDisplay()
     }
 
+    ///Initializes anc configures the screen
     private func initDisplay(){
         e.value = 1
         rs.value = 0
@@ -46,27 +47,21 @@ public class HD44780LCD{
         d5.value = 1
         d4.value = 1
 
-        //TODO: startup delay
+        //Startup delay
         usleep(15000)
 
         sendCommand(0x3) 
         usleep(1640)
 
+        //4-bit mode
         sendCommand(0x2) 
         usleep(40)
  
-        /*
-        if width > 1 {
-            d7.value = 1
-        }
-        //Clock
-        usleep(100)
-        e.value = 1
-        usleep(500)
-        e.value = 0
-        usleep(40)
-        */
-
+        //Function set 001, BW, NumLines, Font, -, -
+        // BW 0=8bit, 1=4bit
+        // NumLines 0=1 line, 1= more than 1
+        // Font 0=5x10, 1=5x8
+        //
         sendCommand( 0x28 )
         sendCommand( (1<<LCD_DISPLAYMODE)|(1<<LCD_DISPLAYMODE_ON) )
         sendCommand( (1<<LCD_ENTRY_MODE)|(1<<LCD_ENTRY_INC) )
@@ -75,7 +70,8 @@ public class HD44780LCD{
     }
 
     /**
-     Moves the cursor and sets a character
+     Moves the cursor and prints a string.
+
      The only difference between the hd44780 charset and the standard
      ASCII is that the backslash is replaced by the yen symbol.
 
@@ -92,21 +88,17 @@ public class HD44780LCD{
         }
     } 
 
-    private func printChar(data:UInt32){
-        guard (data>31)&&(data<255) else {
-            return //Unprintable character
-        }   
-        lcdWrite(Int(data),rsvalue:1)
-    }
-
+    ///Clears the screen 
     public func clearScreen(){
         sendCommand(1 << LCD_CLEAR)
     }
 
+    //Moves the cursor to 0,0
     public func cursorHome(){
         sendCommand(1 << LCD_HOME)
     }
 
+    ///Moves the cursor to the specified position
     public func cursorTo(x:Int,y:Int){
         var pos = 0
 
@@ -126,6 +118,14 @@ public class HD44780LCD{
         }
 
         sendCommand((1 << LCD_DDRAM)+pos)
+    }
+
+ 
+    private func printChar(data:UInt32){
+        guard (data>31)&&(data<255) else {
+            return //Unprintable character
+        }   
+        lcdWrite(Int(data),rsvalue:1)
     }
 
     private func sendCommand(command:Int){
