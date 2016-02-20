@@ -35,11 +35,11 @@ public class HD44780LCD{
         self.d6.direction = .OUT
         self.d5.direction = .OUT
         self.d4.direction = .OUT
-
+        initDisplay()
     }
 
     private func initDisplay(){
-        e.value = 0
+        e.value = 1
         rs.value = 0
         d7.value = 1
         d6.value = 1
@@ -47,57 +47,31 @@ public class HD44780LCD{
         d4.value = 1
 
         //TODO: startup delay
+        usleep(15000)
 
-        d7.value = 0
-        d6.value = 0
+        sendCommand(0x3) 
+        usleep(1640)
 
-        //TODO: delay 100ns
-        e.value = 1
-        //TODO: delay 500ns
-        e.value = 0
-        
-        //TODO: delay 4000ns
-        //Clock 1
-        //TODO: delay 100ns
-        e.value = 1
-        //TODO: delay 500ns
-        e.value = 0
-        //Clock 2
-        //TODO: delay 100ns
-        e.value = 1
-        //TODO: delay 500ns
-        e.value = 0
-        //TODO: delay 40ns   
-
-        d4.value = 0
-        //Clock 1
-        //TODO: delay 100ns
-        e.value = 1
-        //TODO: delay 500ns
-        e.value = 0
-        //TODO: delay 40ns   
-        //Clock 2
-        //TODO: delay 100ns
-        e.value = 1
-        //TODO: delay 500ns
-        e.value = 0
-        //TODO: delay 40ns   
-        //TODO: delay 500ns   
+        sendCommand(0x2) 
+        usleep(40)
  
+        /*
         if width > 1 {
             d7.value = 1
         }
         //Clock
-        //TODO: delay 100ns
+        usleep(100)
         e.value = 1
-        //TODO: delay 500ns
+        usleep(500)
         e.value = 0
-        //TODO: delay 40ns   
- 
-        sendCommand(LCD_DISPLAYMODE)
+        usleep(40)
+        */
+
+        sendCommand( 0x28 )
+        sendCommand( (1<<LCD_DISPLAYMODE)|(1<<LCD_DISPLAYMODE_ON) )
+        sendCommand( (1<<LCD_ENTRY_MODE)|(1<<LCD_ENTRY_INC) )
+        cursorHome()
         clearScreen()
-        sendCommand(LCD_ENTRY_MODE|LCD_ENTRY_INC)
-        sendCommand(LCD_DISPLAYMODE|LCD_DISPLAYMODE_ON)
     }
 
     /**
@@ -111,9 +85,9 @@ public class HD44780LCD{
     public func printString(x:Int, y:Int, what:String, usCharSet:Bool){
         //TODO: guard position
         
-        cursorTo(y*width+x)
+        cursorTo(x,y:y)
         for scalar in what.unicodeScalars {
-            let charId:UInt32 = usCharSet ? 0 : 128
+            let charId:UInt32 = usCharSet ? 0 : 160
             printChar(scalar.value+charId)
         }
     } 
@@ -133,7 +107,24 @@ public class HD44780LCD{
         sendCommand(1 << LCD_HOME)
     }
 
-    public func cursorTo(pos:Int){
+    public func cursorTo(x:Int,y:Int){
+        var pos = 0
+
+        if height==4 {
+            switch(y){
+                case 1:
+                    pos = 0x40 + y
+                case 2:
+                    pos = 0x14 + y
+                case 3:
+                    pos = 0x54 + y
+                default:
+                    pos = y
+            }
+        }else{
+            pos = x * 0x40 + y
+        }
+
         sendCommand((1 << LCD_DDRAM)+pos)
     }
 
@@ -144,24 +135,24 @@ public class HD44780LCD{
     private func lcdWrite(data:Int, rsvalue:Int){
         rs.value = rsvalue
                 
-        d7.value = data & 0b10000000
-        d6.value = data & 0b01000000
-        d5.value = data & 0b00100000
-        d4.value = data & 0b00010000
+        d7.value = (data & 0b10000000)==0 ? 0 : 1
+        d6.value = (data & 0b01000000)==0 ? 0 : 1
+        d5.value = (data & 0b00100000)==0 ? 0 : 1
+        d4.value = (data & 0b00010000)==0 ? 0 : 1
         
-        //TODO: Delay 100ns
+        usleep(100)
         e.value = 1
-        //TODO: Delay 500ns
+        usleep(500)
         e.value = 0
 
-        d7.value = data & 0b00001000
-        d6.value = data & 0b00000100
-        d5.value = data & 0b00000010
-        d4.value = data & 0b00000001
+        d7.value = (data & 0b00001000)==0 ? 0 : 1
+        d6.value = (data & 0b00000100)==0 ? 0 : 1
+        d5.value = (data & 0b00000010)==0 ? 0 : 1
+        d4.value = (data & 0b00000001)==0 ? 0 : 1
 
-        //TODO: Delay 100ns
+        usleep(100)
         e.value = 1
-        //TODO: Delay 500ns
+        usleep(500)
         e.value = 0
 
         // Once the byte has been sent, reset to 1
@@ -171,10 +162,10 @@ public class HD44780LCD{
         d4.value = 1
 
         //Delay
-        if ( (rsvalue == 0) && ((data==(1<<LCD_CLEAR))||(data==(1<<LCD_HOME))) ) {
-            //Delay 1640ns
+        if ( (rsvalue == 0) && (data<=(1<<LCD_CLEAR)|(1<<LCD_HOME)) ) {
+            usleep(1640)
         }else{
-            //Delay 40ns
+            usleep(40)
         } 
     }
 
