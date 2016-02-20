@@ -1,7 +1,5 @@
 #HD44780CharacterLCD.swift
 
-**IT DOES NOT WORK YET, COME BACK IN A FEW DAYS**
-
 *A Swift library for 16x2(aka 1602A), 20x4(aka 2004A) or bigger Character LCDs with an Hitachi HD44780 controller or one of its clones(KS0066, SPLC780D, ST7066U, NT8331D, etc...).*
 
 <p>
@@ -18,7 +16,7 @@
 
 A Swift library for 16x2(aka 1602A), 20x4(aka 2004A) or bigger Character LCDs with an Hitachi HD44780 controller or one of its clones(KS0066, SPLC780D, ST7066U, NT8331D, etc... 99% of the controllers on the market).
 
-This library will not work with LCDs connected with an additional I2C/SPI driver board (boards with just 5 pins instead of 16 or so). 
+This library will not work with LCDs connected to an additional I2C/SPI driver board (boards with just 5 pins instead of 16 or so). 
 
 Also, the RGB backlight is not supported, it could be added in the future if someone is interested. 
 
@@ -49,6 +47,37 @@ As everything interacting with GPIOs via sysfs, if you are not already root, you
 
 ## Usage 
 
+The library needs 6 GPIO Objects created with SwiftyGPIO to initialize the HD44780 class, let's see an example built on a RaspberryPi 2:
+
+```swift
+let gpios = SwiftyGPIO.getGPIOsForBoard(.RaspberryPi2)
+var rs = gpios[.P2]!
+var e = gpios[.P3]!
+var d4 = gpios[.P4]!
+var d5 = gpios[.P17]!
+var d6 = gpios[.P27]!
+var d7 = gpios[.P22]!
+let lcd = HD44780LCD(rs:rs,e:e,d7:d7,d6:d6,d5:d5,d4:d4,width:20,height:4)
+```
+
+The screen can be cleared using the `clearScreen` method:
+```swift
+lcd.clearScreen()
+```
+
+The cursor, a functionality provided by the HD44780 LCD, points to the position where the next character should be drawn, the cursor can be moved to home (0,0) or to a specific position:
+ 
+```swift
+lcd.cursorHome()
+lcd.cursorTo(0,y:0)
+```
+When a string has to be printed, the cursor is always moved to the given position, so, for now cursor related methods do not have a real use case.
+
+To print a string use the `printString` function, the last parameter specifies if the US charset should be used. If the boolean is false, a japanese charset with katakana symbols will be used.
+
+```swift
+lcd.printString(0,y:0,what:"Hello From Swift!",usCharSet:true)
+```
 
 ## Examples
 
