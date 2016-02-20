@@ -122,7 +122,7 @@ public class HD44780LCD{
         guard (data>31)&&(data<255) else {
             return //Unprintable character
         }   
-        lcdWrite(UInt8(data),rsvalue:1)
+        lcdWrite(Int(data),rsvalue:1)
     }
 
     public func clearScreen(){
@@ -137,11 +137,11 @@ public class HD44780LCD{
         sendCommand((1 << LCD_DDRAM)+pos)
     }
 
-    private func sendCommand(command:UInt8){
+    private func sendCommand(command:Int){
         lcdWrite(command,rsvalue:0)
     }
 
-    private func lcdWrite(data:UInt8, rsvalue:UInt8){
+    private func lcdWrite(data:Int, rsvalue:Int){
         rs.value = rsvalue
                 
         d7.value = data & 0b10000000
@@ -181,15 +181,15 @@ public class HD44780LCD{
 }
 
 
-internal let LCD_CLEAR:UInt8 = 0
-internal let LCD_HOME:UInt8 = 1
+internal let LCD_CLEAR:Int = 0
+internal let LCD_HOME:Int = 1
 
-internal let LCD_ENTRY_MODE:UInt8 = 2
-internal let LCD_ENTRY_INC:UInt8 = 1
+internal let LCD_ENTRY_MODE:Int = 2
+internal let LCD_ENTRY_INC:Int = 1
 
-internal let LCD_DISPLAYMODE:UInt8 = 3
-internal let LCD_DISPLAYMODE_ON:UInt8 = 2
+internal let LCD_DISPLAYMODE:Int = 3
+internal let LCD_DISPLAYMODE_ON:Int = 2
 
-internal let LCD_DDRAM:UInt8 = 7
+internal let LCD_DDRAM:Int = 7
 
 
