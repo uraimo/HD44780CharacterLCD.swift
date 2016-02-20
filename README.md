@@ -71,9 +71,9 @@ The cursor, a functionality provided by the HD44780 LCD, points to the position 
 lcd.cursorHome()
 lcd.cursorTo(0,y:0)
 ```
-When a string has to be printed, the cursor is always moved to the given position, so, for now cursor related methods do not have a real use case.
+At the moment, cursor related methods do not have a real use case since it's not possible to print a character or a string at the current position (trivial to implement).
 
-To print a string use the `printString` function, the last parameter specifies if the US charset should be used. If the boolean is false, a japanese charset with katakana symbols will be used.
+To print a string at a given position, use the `printString` method, the last parameter specifies if the US charset should be used. If the boolean is false, a japanese charset with katakana symbols will be used instead.
 
 ```swift
 lcd.printString(0,y:0,what:"Hello From Swift!",usCharSet:true)
