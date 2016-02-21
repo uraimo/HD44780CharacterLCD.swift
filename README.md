@@ -47,7 +47,19 @@ As everything interacting with GPIOs via sysfs, if you are not already root, you
 
 ## Usage 
 
-The library needs 6 GPIO Objects created with SwiftyGPIO to initialize the HD44780 class, let's see an example built on a RaspberryPi 2:
+In the following usage example i'll use a 20x4 LCD connected to a RaspberryPi 2 as shown below:
+
+![HD44780 pins](https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/imgs/hitachlcd.jpg)
+
+Before using this as a reference, verify that the pins are the same (A and K could have a different name).
+
+Since the library supports only writes, the *R/W* pin is connected to *GND* and since we use a 4bit data mode, the lower 4 data pins are not connected to anything.
+
+The *A* and *K* pins are used for the backlight, if you have and RGB backlight LCD, you'll have three pins instead of two. Usually you will just connect *K* to *GND* and *A* to *VDD(5V)*. The V0 pins regulates the display contrast, you could connect it to *GND* for maximum contrast or you could search the value you prefer with a 20K variable resistor, here i suggest you to use a 470 Ohm resistor connected to *GND* that will give you a good value of contrast (see pitcure above), if you don't like it feel free to experiment.
+
+And that's all for the LCD connections, just connect the remaining pins to the Raspberry GPIOs as shown in the diagram.
+
+The library needs 6 GPIO Objects created with SwiftyGPIO to initialize the HD44780 class, let's see how to do it on a RaspberryPi 2, we'll use the first 6 gpios on the left side of the header:
 
 ```swift
 let gpios = SwiftyGPIO.getGPIOsForBoard(.RaspberryPi2)
