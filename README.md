@@ -49,7 +49,7 @@ As everything interacting with GPIOs via sysfs, if you are not already root, you
 
 In the following usage example i'll use a 20x4 LCD connected to a RaspberryPi 2 as shown below:
 
-![HD44780 pins](https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/imgs/hitachlcd.png)
+![HD44780 pins](https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/imgs/hitachilcd.png)
 
 Before using this as a reference, verify that the pins are the same (A and K could have a different name).
 
