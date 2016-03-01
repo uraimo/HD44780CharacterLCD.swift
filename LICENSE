@@ -1,7 +1,3 @@
-This library is a extended Swift port of the PCD8544 C++ library from 
-Limor Fried/Ladyada (Adafruit Industries) and adopts the same 3-clause BSD 
-license.
-
 Copyright (c) 2016, Umberto Raimondi
 All rights reserved.
 
