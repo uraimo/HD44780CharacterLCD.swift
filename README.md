@@ -34,7 +34,7 @@ Please refer to the [SwiftyGPIO](https://github.com/uraimo/SwiftyGPIO) readme fo
 
 Once your board runs Swift, considering that at the moment the package manager is not available on ARM, you'll need to manually download the library and its dependencies: 
 
-    wget https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SwiftyGPIO.swift https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/Sources/HD44780CharacterLCD.swift
+    wget https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/swift2/Sources/HD44780CharacterLCD.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/swift-2.2/Sources/SwiftyGPIO.swift
 
 Once downloaded, in the same directory create an additional file that will contain the code of your application (e.g. main.swift). 
 
@@ -94,6 +94,11 @@ lcd.printString(0,y:0,what:"Hello From Swift!",usCharSet:true)
 ## Examples
 
 Examples are available in the *Examples* directory.
+
+## Projects using this library:
+
+* [Portable Wifi Monitor in Swift](http://saygoodnight.com/2016/04/05/portable-wifimon-raspberrypi.html) - A battery powered wifi signal monitor to map you wifi coverage.
+* [Temperature & Humidity Monitor in Swift](http://saygoodnight.com/2016/04/13/swift-temperature-raspberrypi.html) - A temperature monitor with a Raspberry Pi and an AM2302.
 
 
 ## TODO
