@@ -75,7 +75,10 @@ And that's all for the LCD connections, just connect the remaining pins to the R
 The library needs 6 GPIO Objects created with SwiftyGPIO to initialize the HD44780 class, let's see how to do it on a RaspberryPi 2, we'll use the first 6 gpios on the left side of the header:
 
 ```swift
-let gpios = SwiftyGPIO.getGPIOsForBoard(.RaspberryPi2)
+import SwiftyGPIO
+import HD44780LCD
+
+let gpios = SwiftyGPIO.GPIOs(for: .RaspberryPi2)
 var rs = gpios[.P2]!
 var e = gpios[.P3]!
 var d4 = gpios[.P4]!
@@ -94,14 +97,14 @@ The cursor, a functionality provided by the HD44780 LCD, points to the position 
  
 ```swift
 lcd.cursorHome()
-lcd.cursorTo(0,y:0)
+lcd.cursorTo(x:0,y:0)
 ```
 At the moment, cursor related methods do not have a real use case since it's not possible to print a character or a string at the current position (trivial to implement).
 
 To print a string at a given position, use the `printString` method, the last parameter specifies if the US charset should be used. If the boolean is false, a japanese charset with katakana symbols will be used instead.
 
 ```swift
-lcd.printString(0,y:0,what:"Hello From Swift!",usCharSet:true)
+lcd.printString(x:0,y:0,what:"Hello From Swift!",usCharSet:true)
 ```
 
 ## Examples
