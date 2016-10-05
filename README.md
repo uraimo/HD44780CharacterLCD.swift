@@ -108,6 +108,10 @@ lcd.printString(0,y:0,what:"Hello From Swift!",usCharSet:true)
 
 Examples are available in the *Examples* directory.
 
+## Projects using this library:
+
+* [Portable Wifi Monitor in Swift](http://saygoodnight.com/2016/04/05/portable-wifimon-raspberrypi.html) - A battery powered wifi signal monitor to map you wifi coverage.
+* [Temperature & Humidity Monitor in Swift](http://saygoodnight.com/2016/04/13/swift-temperature-raspberrypi.html) - A temperature monitor with a Raspberry Pi and an AM2302.
 
 ## TODO
 
