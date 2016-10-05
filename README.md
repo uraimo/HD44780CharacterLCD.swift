@@ -4,9 +4,8 @@
 
 <p>
 <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux-only" />
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat" alt="Swift 2 compatible" /></a>
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift3-compatible-4BC51D.svg?style=flat" alt="Swift 2 compatible" /></a>
 <a href="https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/LICENSE"><img src="http://img.shields.io/badge/license-BSD-blue.svg?style=flat" alt="License: BSD" /></a>
-<a href="https://travis-ci.org/uraimo/HD44780CharacterLCD.swift"><img src="https://travis-ci.org/uraimo/HD44780CharacterLCD.swift.svg" alt="Travis CI"></a>
 </p>
  
 ![LCD with Swift](https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/imgs/lcd.jpg)
@@ -24,25 +23,37 @@ Also, the RGB backlight is not supported, it could be added in the future if som
 
 Every board supported by [SwiftyGPIO](https://github.com/uraimo/SwiftyGPIO): Raspberries, BeagleBones, C.H.I.P., etc...
 
+To use this library, you'll need a Linux ARM board with Swift 3.x, the old Swift 2.x version of this library is available [on a specific branch](https://github.com/uraimo/HD44780CharacterLCD.swift/tree/swift2).
+
 The example below will use a RaspberryPi2 board but you can easily modify the example to use one the the other supported boards.
  
 ## Installation
 
-To use this library, you'll need a Linux ARM board with Swift 2.2.
 
 Please refer to the [SwiftyGPIO](https://github.com/uraimo/SwiftyGPIO) readme for Swift installation instructions.
 
-Once your board runs Swift, considering that at the moment the package manager is not available on ARM, you'll need to manually download the library and its dependencies: 
+Once your board runs Swift, if your version support the Swift Package Manager, you can simply add this library as a dependency of your project and compile with `swift build`:
 
-    wget https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SwiftyGPIO.swift https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/Sources/HD44780CharacterLCD.swift
+	let package = Package(
+	    name: "MyProject",
+	    dependencies: [
+		.Package(url: "https://github.com/uraimo/HD44780CharacterLCD.swift.git", majorVersion: 2),
+		...
+	    ]
+	    ...
+	) 
 
-Once downloaded, in the same directory create an additional file that will contain the code of your application (e.g. main.swift). 
+If SPM is not supported, you'll need to manually download the library and its dependencies: 
 
-When your code is ready, compile it with:
+    wget https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/Sources/HD44780CharacterLCD.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SwiftyGPIO.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/Thread.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/POSIXError.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SunXi.swift
 
-    swiftc SwiftyGPIO.swift HD44780CharacterLCD.swift main.swift
+
+And once all the files have been downloaded, create an additional file that will contain the code of your application (e.g. main.swift). When your code is ready, compile it with:
+
+    swiftc  *.swift
 
 The compiler will create a **main** executable.
+
 As everything interacting with GPIOs via sysfs, if you are not already root, you will need to run that binary with `sudo ./main`.
 
 ## Usage 
@@ -98,7 +109,7 @@ Examples are available in the *Examples* directory.
 
 ## TODO
 
-A few missing features (that you could help implement if interested):
+A few missing features:
 
 - [ ] User defined characters not supported (see [here](http://www.quinapalus.com/hd44780udg.html))
 - [ ] This library only write to the display, reading is not supported
