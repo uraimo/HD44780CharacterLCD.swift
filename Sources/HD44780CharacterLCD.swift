@@ -18,7 +18,7 @@ public class HD44780LCD{
     var rs,e,d7,d6,d5,d4:GPIO
     let width,height:Int
 
-    init(rs:GPIO,e:GPIO,
+    public init(rs:GPIO,e:GPIO,
          d7:GPIO,d6:GPIO,d5:GPIO,d4:GPIO,
          width:Int,height:Int){
         self.rs=rs
