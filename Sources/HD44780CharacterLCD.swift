@@ -1,5 +1,5 @@
 #if arch(arm) && os(Linux)
-    //import SwiftyGPIO  //Uncomment this when using the package manager
+    import SwiftyGPIO  //Comment this when not using the package manager
     import Glibc
 #else
     import Darwin //Needed for TravisCI
@@ -81,7 +81,7 @@ public class HD44780LCD{
     public func printString(x:Int, y:Int, what:String, usCharSet:Bool){
         //TODO: guard position
         
-        cursorTo(x,y:y)
+        cursorTo(x:x,y:y)
         for scalar in what.unicodeScalars {
             let charId:UInt32 = usCharSet ? 0 : 160
             printChar(scalar.value+charId)
@@ -121,15 +121,15 @@ public class HD44780LCD{
     }
 
  
-    private func printChar(data:UInt32){
+    private func printChar(_ data:UInt32){
         guard (data>31)&&(data<255) else {
             return //Unprintable character
         }   
-        lcdWrite(Int(data),rsvalue:1)
+        lcdWrite(data: Int(data),rsvalue:1)
     }
 
-    private func sendCommand(command:Int){
-        lcdWrite(command,rsvalue:0)
+    private func sendCommand(_ command:Int){
+        lcdWrite(data: command,rsvalue:0)
     }
 
     private func lcdWrite(data:Int, rsvalue:Int){

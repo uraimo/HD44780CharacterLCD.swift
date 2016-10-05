@@ -43,6 +43,8 @@ Once your board runs Swift, if your version support the Swift Package Manager, y
 	    ...
 	) 
 
+The directory `Examples/RaspberryPi` contains a sample project that uses SPM.
+
 If SPM is not supported, you'll need to manually download the library and its dependencies: 
 
     wget https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/Sources/HD44780CharacterLCD.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SwiftyGPIO.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/Thread.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/POSIXError.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SunXi.swift
