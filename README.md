@@ -43,7 +43,7 @@ Once your board runs Swift, if your version support the Swift Package Manager, y
 	    ...
 	) 
 
-The directory `Examples/RaspberryPi` contains a sample project that uses SPM.
+The directory `Examples/RaspberryPi` contains a sample project that uses SPM, compile it and run the sample with `sudo ./.build/debug/TestLCD`.
 
 If SPM is not supported, you'll need to manually download the library and its dependencies: 
 
@@ -56,7 +56,7 @@ And once all the files have been downloaded, create an additional file that will
 
 The compiler will create a **main** executable.
 
-As everything interacting with GPIOs via sysfs, if you are not already root, you will need to run that binary with `sudo ./main`.
+As everything interacting with GPIOs, if you are not already root, you will need to run that binary with `sudo ./main`.
 
 ## Usage 
 
