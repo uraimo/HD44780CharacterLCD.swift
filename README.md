@@ -4,7 +4,7 @@
 
 <p>
 <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux-only" />
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift3-compatible-4BC51D.svg?style=flat" alt="Swift 2 compatible" /></a>
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift3-compatible-4BC51D.svg?style=flat" alt="Swift 3 compatible" /></a>
 <a href="https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/LICENSE"><img src="http://img.shields.io/badge/license-BSD-blue.svg?style=flat" alt="License: BSD" /></a>
 </p>
  
@@ -47,7 +47,7 @@ The directory `Examples/RaspberryPi` contains a sample project that uses SPM, co
 
 If SPM is not supported, you'll need to manually download the library and its dependencies: 
 
-    wget https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/Sources/HD44780CharacterLCD.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SwiftyGPIO.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/Thread.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/POSIXError.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SunXi.swift
+    wget https://raw.githubusercontent.com/uraimo/HD44780CharacterLCD.swift/master/Sources/HD44780CharacterLCD.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SwiftyGPIO.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/Presets.swift https://raw.githubusercontent.com/uraimo/SwiftyGPIO/master/Sources/SunXi.swift
 
 
 And once all the files have been downloaded, create an additional file that will contain the code of your application (e.g. main.swift). When your code is ready, compile it with:
