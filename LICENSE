@@ -1,3 +1,6 @@
+This library is derived from the HD44780 C++ library from Limor Fried/Ladyada
+Adafruit Industries) and adopts the same 3-clause BSD icense.
+
 Copyright (c) 2016, Umberto Raimondi
 All rights reserved.
 
