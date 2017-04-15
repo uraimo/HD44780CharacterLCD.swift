@@ -60,12 +60,11 @@
 */
 
 #if arch(arm) && os(Linux)
-    import SwiftyGPIO  //Comment this when not using the package manager
     import Glibc
 #else
-    import Darwin //Needed for TravisCI
+    import Darwin
 #endif
- 
+import SwiftyGPIO  //Comment this when not using the package manager
 
 /**
  Class that represents the display being configured
