@@ -159,22 +159,15 @@ public class HD44780LCD{
     }
 
     ///Moves the cursor to the specified position
+    // Lefmost position is at x = 0
+    // Topmost position is at y = 0
+
     public func cursorTo(x:Int,y:Int){
         var pos = 0
-
-        if height==4 {
-            switch(y){
-                case 1:
-                    pos = 0x40 + y
-                case 2:
-                    pos = 0x14 + y
-                case 3:
-                    pos = 0x54 + y
-                default:
-                    pos = y
-            }
-        }else{
-            pos = x * 0x40 + y
+        let offsets = [0x0, 0x40, 0x14, 0x54]
+    
+        if (x >= 0 && x <= self.width && y >=0 && y <= self.height) {
+            pos = x + offsets[y]
         }
 
         sendCommand((1 << LCD_DDRAM)+pos)
