@@ -37,7 +37,7 @@ Once your board runs Swift, if your version support the Swift Package Manager, y
 	let package = Package(
 	    name: "MyProject",
 	    dependencies: [
-		.Package(url: "https://github.com/uraimo/HD44780CharacterLCD.swift.git", majorVersion: 3),
+		.package(url: "https://github.com/uraimo/HD44780CharacterLCD.swift.git", from: "3.0.0"),
 		...
 	    ]
 	    ...
