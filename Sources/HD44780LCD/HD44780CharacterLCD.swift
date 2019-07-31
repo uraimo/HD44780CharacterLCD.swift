@@ -166,11 +166,8 @@ public class HD44780LCD{
         var pos = 0
         let offsets = [0x0, 0x40, 0x14, 0x54]
     
-        let xMoreThanZero = (x >= 0)
-        let xLessThanWidth = (x <= self.width)
-        let yMoreThanZero = (y >= 0)
-        let yLessThanHeight = (y <= self.height)
-        if (xMoreThanZero && xLessThanWidth && yMoreThanZero && yLessThanHeight) {
+        if ( (x >= 0) && (x <= self.width) && 
+             (y >= 0) && (y <= self.height) ) {
             pos = x + offsets[y]
         }
 
