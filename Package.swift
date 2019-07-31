@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
@@ -14,7 +14,8 @@ let package = Package(
             name: "HD44780LCD",
             dependencies: [
                 "SwiftyGPIO"
-            ]
+            ],
+            path: "Sources"
         )
     ]
 )
